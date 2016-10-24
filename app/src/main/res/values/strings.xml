@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">CyberSportNews_MaterialViewPager</string>
+    <string name="app_name">CyberSportNews</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="button">Read</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Dota">Dota</string>
     <string name="CsGo">CsGo</string>

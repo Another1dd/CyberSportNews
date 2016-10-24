@@ -21,7 +21,8 @@ public class ParseText extends AsyncTask<String, Void, String>
         try {
 
             Document document = Jsoup.connect(params[0]).get();
-            Element element = document.select(".vp-news-text").first();
+            Element element = document.select(".lead").first();
+
             attr = element.text();
         } catch (IOException e) {
             e.printStackTrace();

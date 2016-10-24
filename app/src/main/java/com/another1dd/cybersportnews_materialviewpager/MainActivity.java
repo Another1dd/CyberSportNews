@@ -4,8 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
+
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
@@ -36,21 +35,21 @@ public class MainActivity extends AppCompatActivity {
             public HeaderDesign getHeaderDesign(int page) {
                 switch (page) {
                     case 0:
-                        return HeaderDesign.fromColorResAndUrl(
+                        return HeaderDesign.fromColorResAndDrawable(
                                 R.color.blue,
-                                "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
+                                getResources().getDrawable(R.drawable.dota));
                     case 1:
-                        return HeaderDesign.fromColorResAndUrl(
+                        return HeaderDesign.fromColorResAndDrawable(
                                 R.color.green,
-                                "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+                                getResources().getDrawable(R.drawable.csgo));
                     case 2:
-                        return HeaderDesign.fromColorResAndUrl(
+                        return HeaderDesign.fromColorResAndDrawable(
                                 R.color.cyan,
-                                "http://www.droid-life.com/wp-content/uploads/2014/10/lollipop-wallpapers10.jpg");
+                                getResources().getDrawable(R.drawable.lol));
                     case 3:
-                        return HeaderDesign.fromColorResAndUrl(
+                        return HeaderDesign.fromColorResAndDrawable(
                                 R.color.red,
-                                "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+                                getResources().getDrawable(R.drawable.hots));
                 }
 
                 //execute others actions if needed (ex : modify your header logo)
@@ -59,15 +58,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //remplir le ViewPager
+
         this.materialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
             @Override
             public Fragment getItem(int position) {
-                if (position == 0) {
-                    return RecyclerViewFragment.newInstance();
-                }
-                else return new BlankFragment();
+               switch (position)
+               {
+                   case 0:
+                       return RecyclerViewFragment.newInstance("http://www.cybersport.ru/news/?game=21&MUL_MODE=");
+                   case 1:
+                       return RecyclerViewFragment.newInstance("http://www.cybersport.ru/news/?game=19&MUL_MODE=");
+                   case 2:
+                       return RecyclerViewFragment.newInstance("http://www.cybersport.ru/news/?game=23955&MUL_MODE=");
+                   case 3:
+                       return RecyclerViewFragment.newInstance("http://www.cybersport.ru/news/?game=108725&MUL_MODE=");
+                    default:
+                        return RecyclerViewFragment.newInstance("http://www.cybersport.ru/news/");
+               }
+
             }
 
             @Override

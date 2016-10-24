@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
@@ -26,15 +27,26 @@ public class RecyclerViewFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    final ArrayList<String> arrayList = new ArrayList<>();
+    LinkedHashMap<String,String> linkedHashMap = new LinkedHashMap<>();
 
-    public static RecyclerViewFragment newInstance() {
-        return new RecyclerViewFragment();
+    private static final String BUNDLE_CONTENT = "bundle_content";
+
+    public RecyclerViewFragment(){};
+
+
+
+    public static RecyclerViewFragment newInstance(String href) {
+        final RecyclerViewFragment fragment = new RecyclerViewFragment();
+        final Bundle arguments = new Bundle();
+        arguments.putString(BUNDLE_CONTENT,href);
+        fragment.setArguments(arguments);
+        return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_recycler_view, container, false);
+
     }
 
     @Override
@@ -49,16 +61,14 @@ public class RecyclerViewFragment extends Fragment {
 
         //100 faux contenu
         ParseTitle parseTitle = new ParseTitle();
-        parseTitle.execute("http://www.cybersport.ru/news/?game=21&MUL_MODE=");
+        parseTitle.execute(getArguments().getString(BUNDLE_CONTENT));
 
         try {
-            final LinkedHashMap<String, String> hashMap = parseTitle.get();
+            linkedHashMap = parseTitle.get();
 
 
-            for (Map.Entry entry : hashMap.entrySet())
-            {
-                arrayList.add(entry.getKey().toString());
-            }
+
+
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -67,8 +77,8 @@ public class RecyclerViewFragment extends Fragment {
         }
 
 
-        //penser à passer notre Adapter (ici : TestRecyclerViewAdapter) à un RecyclerViewMaterialAdapter
-        mAdapter = new RecyclerViewMaterialAdapter(new TestRecyclerViewAdapter(arrayList));
+
+        mAdapter = new RecyclerViewMaterialAdapter(new TestRecyclerViewAdapter(linkedHashMap));
         mRecyclerView.setAdapter(mAdapter);
 
         //notifier le MaterialViewPager qu'on va utiliser une RecyclerView
