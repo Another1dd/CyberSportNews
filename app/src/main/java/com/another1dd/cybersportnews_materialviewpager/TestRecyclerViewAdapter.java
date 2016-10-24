@@ -1,18 +1,19 @@
 package com.another1dd.cybersportnews_materialviewpager;
 
 
-import android.net.sip.SipSession;
+
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 
 import java.util.ArrayList;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import java.util.Map;
@@ -20,6 +21,9 @@ import java.util.concurrent.ExecutionException;
 
 public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapter.ViewHolder> {
 
+    static final String MAIN_NEWS_TEXT = "MNT";
+    static final String LEAD = "lead";
+    static final String PANEL_BODY = "panel";
 
     private LinkedHashMap<String,String> map;
 
@@ -84,7 +88,26 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerVi
                     if (textParsed[0].equals(""))
                     {
                         try {
-                            textParsed[0] = parseText.get();
+
+                            HashMap<String,String> map = parseText.get();
+                            String lead = map.get(LEAD);
+                            String main = map.get(MAIN_NEWS_TEXT);
+                            String panel = map.get(PANEL_BODY);
+                            try {
+                                lead = lead.substring(0, lead.indexOf("Связанные"));
+                            } catch (Exception e)
+                            {
+
+                            }
+                            if (lead == null)
+                            {
+                                textParsed[0] = panel;
+                            }else {
+                                textParsed[0] = lead + "\n" + main;
+                            }
+
+
+
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         } catch (ExecutionException e) {

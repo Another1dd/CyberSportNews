@@ -37,19 +37,19 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         return HeaderDesign.fromColorResAndDrawable(
                                 R.color.blue,
-                                getResources().getDrawable(R.drawable.dota));
+                                null);
                     case 1:
                         return HeaderDesign.fromColorResAndDrawable(
                                 R.color.green,
-                                getResources().getDrawable(R.drawable.csgo));
+                                null);
                     case 2:
                         return HeaderDesign.fromColorResAndDrawable(
                                 R.color.cyan,
-                                getResources().getDrawable(R.drawable.lol));
+                                null);
                     case 3:
                         return HeaderDesign.fromColorResAndDrawable(
                                 R.color.red,
-                                getResources().getDrawable(R.drawable.hots));
+                                null);
                 }
 
                 //execute others actions if needed (ex : modify your header logo)
