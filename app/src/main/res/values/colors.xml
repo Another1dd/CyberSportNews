@@ -6,6 +6,8 @@
     <color name="cyan">#00BCD4</color>
     <color name="orange">#e95609</color>
     <color name="dark_grey">#25383C</color>
+    <color name="black">#000000</color>
+
 
     <color name="accent_color">@color/blue</color>
     <color name="colorPrimary">@color/blue</color>

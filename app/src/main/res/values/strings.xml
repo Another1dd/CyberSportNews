@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">CyberSportNews</string>
+    <string name="app_name">Новости Киберспорта</string>
 
     <string name="button">Read</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_http">читать в источнике</string>
+
     <string name="Dota">Dota</string>
     <string name="CsGo">CsGo</string>
     <string name="LoL">LoL</string>

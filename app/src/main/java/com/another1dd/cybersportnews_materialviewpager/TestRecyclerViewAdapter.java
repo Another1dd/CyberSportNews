@@ -2,15 +2,19 @@ package com.another1dd.cybersportnews_materialviewpager;
 
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
-
+import java.net.URI;
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -31,6 +35,7 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerVi
 
 
 
+
     public static class ViewHolder  extends RecyclerView.ViewHolder{
         private CardView cardView;
         public ViewHolder(CardView itemView) {
@@ -38,6 +43,8 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerVi
             cardView = itemView;
         }
     }
+
+
 
     public TestRecyclerViewAdapter(LinkedHashMap<String,String> map) {
         this.map = map;
@@ -74,6 +81,19 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerVi
         textView.setText(list.get(position));
         final TextView textView1 = (TextView) cardView.findViewById(R.id.news_txt);
         textView1.setVisibility(View.GONE);
+        final Button button = (Button) cardView.findViewById(R.id.button_http);
+
+        button.setVisibility(View.GONE);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browseIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(map.get(list.get(holder.getAdapterPosition() - 1))));
+                v.getContext().startActivity(browseIntent);
+
+            }
+        });
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,8 +136,10 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerVi
                     }
                     textView1.setText(textParsed[0]);
                     textView1.setVisibility(View.VISIBLE);
+                    button.setVisibility(View.VISIBLE);
                 }else {
                     textView1.setVisibility(View.GONE);
+                    button.setVisibility(View.GONE);
                 }
 
 

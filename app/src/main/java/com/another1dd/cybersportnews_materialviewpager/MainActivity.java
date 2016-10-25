@@ -1,5 +1,7 @@
 package com.another1dd.cybersportnews_materialviewpager;
 
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
@@ -25,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //le MaterialViewPager
-        this.materialViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
+
+        materialViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
 
 
@@ -36,20 +38,20 @@ public class MainActivity extends AppCompatActivity {
                 switch (page) {
                     case 0:
                         return HeaderDesign.fromColorResAndDrawable(
-                                R.color.blue,
-                                null);
+                                R.color.black,
+                                getResources().getDrawable(R.drawable.dota2));
                     case 1:
                         return HeaderDesign.fromColorResAndDrawable(
-                                R.color.green,
-                                null);
+                                R.color.black,
+                                getResources().getDrawable(R.drawable.csgo));
                     case 2:
                         return HeaderDesign.fromColorResAndDrawable(
-                                R.color.cyan,
-                                null);
+                                R.color.black,
+                                getResources().getDrawable(R.drawable.lol));
                     case 3:
                         return HeaderDesign.fromColorResAndDrawable(
-                                R.color.red,
-                                null);
+                                R.color.black,
+                                getResources().getDrawable(R.drawable.hots));
                 }
 
                 //execute others actions if needed (ex : modify your header logo)
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        this.materialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+        materialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
             @Override
             public Fragment getItem(int position) {
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            //Заголовки наших страник
+
             @Override
             public CharSequence getPageTitle(int position) {
                 switch (position) {
@@ -105,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //есть возможность хранить в памяти определенное количество страниц иначе после прокрутки они будут загружаться заново
-        this.materialViewPager.getViewPager().setOffscreenPageLimit(tabCount);
-        //relie les tabs au viewpager
-        this.materialViewPager.getPagerTitleStrip().setViewPager(this.materialViewPager.getViewPager());
+        materialViewPager.getViewPager().setOffscreenPageLimit(tabCount);
+
+        materialViewPager.getPagerTitleStrip().setViewPager(this.materialViewPager.getViewPager());
     }
 }
