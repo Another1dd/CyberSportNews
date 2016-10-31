@@ -5,6 +5,7 @@
 
     <style name="AppTheme" parent="AppBaseTheme">
 
+        <item name="android:itemBackground">@color/black</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="21">true</item>
@@ -15,6 +16,7 @@
 
         <!-- Toolbar Theme / Apply white arrow -->
         <item name="colorControlNormal">@android:color/white</item>
+        <item name="actionBarTheme">@style/AppTheme.ActionBarTheme</item>
 
 
         <!-- Material Theme -->
@@ -24,8 +26,16 @@
 
         <item name="android:navigationBarColor" tools:targetApi="21">@color/navigationBarColor</item>
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
+        
+
 
     </style>
+
+    <style name="AppTheme.ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- White arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
 
 
 

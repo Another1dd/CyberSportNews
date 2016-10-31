@@ -4,8 +4,14 @@
     <string name="button">Read</string>
     <string name="button_http">читать в источнике</string>
 
-    <string name="Dota">Dota</string>
-    <string name="CsGo">CsGo</string>
-    <string name="LoL">LoL</string>
-    <string name="HoTs">HoTs</string>
+    <string name="Dota">Dota 2</string>
+    <string name="CsGo">Counter-Strike GO</string>
+    <string name="Hearthstone">Hearthstone</string>
+    <string name="LoL">League Of Legends</string>
+    <string name="WoT">World Of Tanks</string>
+    <string name="HoTs">Heroes Of The Storm</string>
+    <string name="SC2">Starcraft 2</string>
+    <string name="Overwatch">Overwatch</string>
+    <string name="Other">Другое</string>
+    <string name="Life">Life</string>
 </resources>
