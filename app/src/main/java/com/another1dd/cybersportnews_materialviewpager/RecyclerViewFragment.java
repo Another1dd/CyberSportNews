@@ -27,11 +27,12 @@ public class RecyclerViewFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    LinkedHashMap<String,String> linkedHashMap = new LinkedHashMap<>();
+    LinkedHashMap<String[], String> linkedHashMap = new LinkedHashMap<>();
 
     private static final String BUNDLE_CONTENT = "bundle_content";
 
-    public RecyclerViewFragment(){};
+    public RecyclerViewFragment() {
+    }
 
 
 

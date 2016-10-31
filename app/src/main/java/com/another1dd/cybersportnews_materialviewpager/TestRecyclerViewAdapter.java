@@ -4,9 +4,16 @@ package com.another1dd.cybersportnews_materialviewpager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,30 +30,26 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapter.ViewHolder> {
+class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapter.ViewHolder> {
 
     static final String MAIN_NEWS_TEXT = "MNT";
     static final String LEAD = "lead";
     static final String PANEL_BODY = "panel";
 
-    private LinkedHashMap<String,String> map;
+    private LinkedHashMap<String[], String> map;
 
 
-
-
-
-
-    public static class ViewHolder  extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
-        public ViewHolder(CardView itemView) {
+
+        ViewHolder(CardView itemView) {
             super(itemView);
             cardView = itemView;
         }
     }
 
 
-
-    public TestRecyclerViewAdapter(LinkedHashMap<String,String> map) {
+    TestRecyclerViewAdapter(LinkedHashMap<String[], String> map) {
         this.map = map;
     }
 
@@ -66,19 +69,29 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerVi
 
 
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final ArrayList<String> list = new ArrayList<>();
+        final ArrayList<String[]> list = new ArrayList<>();
         final String[] textParsed = {""};
 
         for (Map.Entry entry : map.entrySet())
         {
-            list.add(entry.getKey().toString());
+            list.add((String[]) entry.getKey());
 
 
         }
 
         final CardView cardView = holder.cardView;
         final TextView textView = (TextView) cardView.findViewById(R.id.txt);
-        textView.setText(list.get(position));
+        String title = list.get(position)[0];
+        String time = list.get(position)[1];
+        SpannableStringBuilder titleSpan = new SpannableStringBuilder(title + " - " + time);
+        titleSpan.setSpan(new RelativeSizeSpan(0.8f), title.length() + 3,
+                title.length() + time.length() + 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        titleSpan.setSpan(new ForegroundColorSpan(Color.rgb(105, 105, 105)), title.length() + 3,
+                title.length() + time.length() + 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+        textView.setText(titleSpan);
+
+
         final TextView textView1 = (TextView) cardView.findViewById(R.id.news_txt);
         textView1.setVisibility(View.GONE);
         final Button button = (Button) cardView.findViewById(R.id.button_http);

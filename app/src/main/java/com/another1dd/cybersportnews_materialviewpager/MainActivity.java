@@ -1,9 +1,8 @@
 package com.another1dd.cybersportnews_materialviewpager;
 
 import android.content.SharedPreferences;
-import android.graphics.drawable.BitmapDrawable;
+
 import android.graphics.drawable.Drawable;
-import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.ActionBar;
@@ -17,8 +16,9 @@ import android.view.MenuItem;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
+
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -96,35 +96,6 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(false);
         }
-
-        materialViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
-            @Override
-            public HeaderDesign getHeaderDesign(int page) {
-                switch (page) {
-                    case 0:
-                        return HeaderDesign.fromColorResAndDrawable(
-                                R.color.black,
-                                getResources().getDrawable(R.drawable.dota2));
-                    case 1:
-                        return HeaderDesign.fromColorResAndDrawable(
-                                R.color.black,
-                                getResources().getDrawable(R.drawable.csgo));
-                    case 2:
-                        return HeaderDesign.fromColorResAndDrawable(
-                                R.color.black,
-                                getResources().getDrawable(R.drawable.lol));
-                    case 3:
-                        return HeaderDesign.fromColorResAndDrawable(
-                                R.color.black,
-                                getResources().getDrawable(R.drawable.hots));
-                }
-
-                //execute others actions if needed (ex : modify your header logo)
-
-                return null;
-            }
-        });
-
 
         updateMaterialViewPager();
     }
@@ -367,7 +338,61 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
         tabCount = arrayList.size();
+
+        materialViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
+            @Override
+            public HeaderDesign getHeaderDesign(int page) {
+                switch (page) {
+                    case 0:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 1:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 2:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 3:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 4:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 5:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 6:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 7:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 8:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+                    case 9:
+                        return HeaderDesign.fromColorResAndDrawable(
+                                R.color.black,
+                                ReturnLogo(arrayList.get(page)[1]));
+
+                }
+
+                //execute others actions if needed (ex : modify your header logo)
+
+                return null;
+            }
+        });
         materialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
             @Override
@@ -439,10 +464,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         //есть возможность хранить в памяти определенное количество страниц иначе после прокрутки они будут загружаться заново
         materialViewPager.getViewPager().setOffscreenPageLimit(tabCount);
 
-        materialViewPager.getPagerTitleStrip().setViewPager(this.materialViewPager.getViewPager());
+        materialViewPager.getPagerTitleStrip().setViewPager(materialViewPager.getViewPager());
     }
 
     private void SavePreferences(String key,Boolean value)
@@ -451,6 +477,34 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, value);
         editor.apply();
+    }
+
+    private Drawable ReturnLogo(String key) {
+        switch (key) {
+            case DOTA_IC:
+                return getResources().getDrawable(R.drawable.dota2);
+            case CSGO_IC:
+                return getResources().getDrawable(R.drawable.csgo);
+            case HEARTHSTONE_IC:
+                return getResources().getDrawable(R.drawable.dota2);
+            case LOL_IC:
+                return getResources().getDrawable(R.drawable.lol);
+            case WOT_IC:
+                return getResources().getDrawable(R.drawable.dota2);
+            case HOTS_IC:
+                return getResources().getDrawable(R.drawable.hots);
+            case STARCRAFT_IC:
+                return getResources().getDrawable(R.drawable.dota2);
+            case OVERWATCH_IC:
+                return getResources().getDrawable(R.drawable.dota2);
+            case OTHER_IC:
+                return getResources().getDrawable(R.drawable.dota2);
+            case LIFE_IC:
+                return getResources().getDrawable(R.drawable.dota2);
+            default:
+                return getResources().getDrawable(R.drawable.dota2);
+        }
+
     }
 
 

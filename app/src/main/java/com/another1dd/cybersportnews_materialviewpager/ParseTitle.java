@@ -12,22 +12,26 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 
-public class ParseTitle extends AsyncTask<String, Void, LinkedHashMap<String,String>>
+class ParseTitle extends AsyncTask<String, Void, LinkedHashMap<String[], String>>
 {
 
     @Override
-    protected LinkedHashMap<String, String> doInBackground(String... params) {
+    protected LinkedHashMap<String[], String> doInBackground(String... params) {
 
-        LinkedHashMap<String,String> hashMap = new LinkedHashMap<>();
+        LinkedHashMap<String[], String> hashMap = new LinkedHashMap<>();
 
         try {
             Document document = Jsoup.connect(params[0]).get();
-            Elements elements = document.select(".b-news-list-item__title");
+            Elements elements = document.select(".b-news-list-item__media-body");
+
             for (Element element : elements)
             {
+                Element title = element.select(".b-news-list-item__title").first();
+                Element time = element.select(".time.b-news-list-item__time.grey-text").first();
+                String[] temp = {title.text(), time.text()};
                 Element element1 = element.select("a[href]").first();
 
-                hashMap.put(element.text(), element1.attr("abs:href"));
+                hashMap.put(temp, element1.attr("abs:href"));
             }
         } catch (IOException e) {
             e.printStackTrace();
