@@ -1,32 +1,24 @@
 package com.another1dd.cybersportnews_materialviewpager;
 
 
-
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-
-import java.net.URI;
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -35,6 +27,7 @@ class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapt
     static final String MAIN_NEWS_TEXT = "MNT";
     static final String LEAD = "lead";
     static final String PANEL_BODY = "panel";
+    static final String BLOG_TEXT = "blog";
 
     private LinkedHashMap<String[], String> map;
 
@@ -67,13 +60,11 @@ class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapt
     }
 
 
-
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final ArrayList<String[]> list = new ArrayList<>();
         final String[] textParsed = {""};
 
-        for (Map.Entry entry : map.entrySet())
-        {
+        for (Map.Entry entry : map.entrySet()) {
             list.add((String[]) entry.getKey());
 
 
@@ -115,30 +106,27 @@ class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapt
                 parseText.execute(map.get(list.get(holder.getAdapterPosition() - 1)));
 
 
-
-                if (textView1.getVisibility() == View.GONE)
-                {
-                    if (textParsed[0].equals(""))
-                    {
+                if (textView1.getVisibility() == View.GONE) {
+                    if (textParsed[0].equals("")) {
                         try {
 
-                            HashMap<String,String> map = parseText.get();
+                            HashMap<String, String> map = parseText.get();
                             String lead = map.get(LEAD);
                             String main = map.get(MAIN_NEWS_TEXT);
                             String panel = map.get(PANEL_BODY);
+                            String blogText = map.get(BLOG_TEXT);
                             try {
                                 lead = lead.substring(0, lead.indexOf("Связанные"));
-                            } catch (Exception e)
-                            {
+                            } catch (Exception e) {
 
                             }
-                            if (lead == null)
-                            {
+                            if (lead == null && panel != null) {
                                 textParsed[0] = panel;
-                            }else {
+                            } else if (panel == null & lead != null) {
                                 textParsed[0] = lead + "\n" + main;
+                            } else {
+                                textParsed[0] = blogText;
                             }
-
 
 
                         } catch (InterruptedException e) {
@@ -150,19 +138,14 @@ class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapt
                     textView1.setText(textParsed[0]);
                     textView1.setVisibility(View.VISIBLE);
                     button.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     textView1.setVisibility(View.GONE);
                     button.setVisibility(View.GONE);
                 }
 
 
-
             }
         });
-
-
-
-
 
 
     }

@@ -1,13 +1,13 @@
-<com.github.florent37.materialviewpager.MaterialViewPager
-    app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
+<com.github.florent37.materialviewpager.MaterialViewPager app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
     android:id="@+id/materialViewPager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:viewpager_logo="@layout/header_logo"
+
     app:viewpager_logoMarginTop="100dp"
     app:viewpager_color="@color/colorPrimary"
     app:viewpager_headerHeight="200dp"
     app:viewpager_headerAlpha="1.5"
+    app:viewpager_header="@layout/header"
 
     app:viewpager_hideLogoWithFade="false"
     app:viewpager_hideToolbarAndTitle="true"
@@ -18,7 +18,6 @@
     app:viewpager_transparentToolbar="true"
     app:viewpager_animatedHeaderImage="false"
     app:viewpager_disableToolbar="false"
-
 
 
     xmlns:app="http://schemas.android.com/apk/res-auto"

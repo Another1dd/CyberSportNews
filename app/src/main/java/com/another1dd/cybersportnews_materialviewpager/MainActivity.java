@@ -1,31 +1,27 @@
 package com.another1dd.cybersportnews_materialviewpager;
 
 import android.content.SharedPreferences;
-
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
-
 import java.util.ArrayList;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     MaterialViewPager materialViewPager;
-    LinkedHashMap<String[],Boolean> tabs = new LinkedHashMap<>();
+    LinkedHashMap<String[], Boolean> tabs = new LinkedHashMap<>();
     final static String DOTA_IC = "Dota 2";
     final static String CSGO_IC = "Counter-Strike GO";
     final static String HEARTHSTONE_IC = "Hearthstone";
@@ -62,25 +58,22 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(APP_PREF, MODE_PRIVATE);
 
 
-
-        if (savedInstanceState!=null)
-        {
-            tabs = (LinkedHashMap<String[],Boolean>)savedInstanceState.getSerializable("tabs");
-        }
-        else{
-            tabs.put(DOTA, sharedPreferences.getBoolean(DOTA_IC,true));
-            tabs.put(CSGO, sharedPreferences.getBoolean(CSGO_IC,true));
-            tabs.put(HEARTHSTONE, sharedPreferences.getBoolean(HEARTHSTONE_IC,true));
-            tabs.put(LOL, sharedPreferences.getBoolean(LOL_IC,true));
-            tabs.put(WOT, sharedPreferences.getBoolean(WOT_IC,false));
-            tabs.put(HOTS, sharedPreferences.getBoolean(HOTS_IC,false));
-            tabs.put(STARCRAFT, sharedPreferences.getBoolean(STARCRAFT_IC,false));
-            tabs.put(OVERWATCH, sharedPreferences.getBoolean(OVERWATCH_IC,false));
-            tabs.put(OTHER, sharedPreferences.getBoolean(OTHER_IC,false));
-            tabs.put(LIFE, sharedPreferences.getBoolean(LIFE_IC,false));
+        if (savedInstanceState != null) {
+            tabs = (LinkedHashMap<String[], Boolean>) savedInstanceState.getSerializable("tabs");
+        } else {
+            tabs.put(DOTA, sharedPreferences.getBoolean(DOTA_IC, true));
+            tabs.put(CSGO, sharedPreferences.getBoolean(CSGO_IC, true));
+            tabs.put(HEARTHSTONE, sharedPreferences.getBoolean(HEARTHSTONE_IC, true));
+            tabs.put(LOL, sharedPreferences.getBoolean(LOL_IC, true));
+            tabs.put(WOT, sharedPreferences.getBoolean(WOT_IC, false));
+            tabs.put(HOTS, sharedPreferences.getBoolean(HOTS_IC, false));
+            tabs.put(STARCRAFT, sharedPreferences.getBoolean(STARCRAFT_IC, false));
+            tabs.put(OVERWATCH, sharedPreferences.getBoolean(OVERWATCH_IC, false));
+            tabs.put(OTHER, sharedPreferences.getBoolean(OTHER_IC, false));
+            tabs.put(LIFE, sharedPreferences.getBoolean(LIFE_IC, false));
         }
         //колличество страниц
-         tabCount = tabs.size();
+        tabCount = tabs.size();
 
         materialViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
@@ -114,71 +107,61 @@ public class MainActivity extends AppCompatActivity {
         MenuItem other_menu = menu.findItem(R.id.other_menu);
         MenuItem life_menu = menu.findItem(R.id.life_menu);
 
-        if(tabs.get(DOTA))
-        {
+        if (tabs.get(DOTA)) {
             dota_menu.setChecked(true);
         } else {
             dota_menu.setChecked(false);
         }
 
-        if(tabs.get(CSGO))
-        {
+        if (tabs.get(CSGO)) {
             csgo_menu.setChecked(true);
         } else {
             csgo_menu.setChecked(false);
         }
 
-        if(tabs.get(HEARTHSTONE))
-        {
+        if (tabs.get(HEARTHSTONE)) {
             heathstone_menu.setChecked(true);
         } else {
             heathstone_menu.setChecked(false);
         }
 
-        if(tabs.get(LOL))
-        {
+        if (tabs.get(LOL)) {
             lol_menu.setChecked(true);
         } else {
             lol_menu.setChecked(false);
         }
 
-        if(tabs.get(WOT))
-        {
+        if (tabs.get(WOT)) {
             wot_menu.setChecked(true);
         } else {
             wot_menu.setChecked(false);
         }
 
-        if(tabs.get(HOTS))
-        {
+        if (tabs.get(HOTS)) {
             hots_menu.setChecked(true);
         } else {
             hots_menu.setChecked(false);
         }
 
-        if(tabs.get(STARCRAFT))
-        {
+        if (tabs.get(STARCRAFT)) {
             sc2_menu.setChecked(true);
         } else {
             sc2_menu.setChecked(false);
         }
 
-        if(tabs.get(OVERWATCH))
-        {
+        if (tabs.get(OVERWATCH)) {
             overwatch_menu.setChecked(true);
         } else {
             overwatch_menu.setChecked(false);
         }
 
-        if(tabs.get(OTHER))
-        {
+        if (tabs.get(OTHER)) {
             other_menu.setChecked(true);
         } else {
             other_menu.setChecked(false);
         }
 
-        if(tabs.get(LIFE))
-        {
+        if (tabs.get(LIFE)) {
             life_menu.setChecked(true);
         } else {
             life_menu.setChecked(false);
@@ -189,26 +172,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.dota_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(DOTA, false);
-                    SavePreferences(DOTA_IC,false);
-                }else {
+                    SavePreferences(DOTA_IC, false);
+                } else {
                     item.setChecked(true);
                     tabs.put(DOTA, true);
-                    SavePreferences(DOTA_IC,true);
+                    SavePreferences(DOTA_IC, true);
                 }
                 updateMaterialViewPager();
                 return true;
             case R.id.csgo_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(CSGO, false);
-                    SavePreferences(CSGO_IC,false);
-                }else {
+                    SavePreferences(CSGO_IC, false);
+                } else {
                     item.setChecked(true);
                     tabs.put(CSGO, true);
                     SavePreferences(CSGO_IC, true);
@@ -216,11 +198,11 @@ public class MainActivity extends AppCompatActivity {
                 updateMaterialViewPager();
                 return true;
             case R.id.hearthstone_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(HEARTHSTONE, false);
-                    SavePreferences(HEARTHSTONE_IC,false);
-                }else {
+                    SavePreferences(HEARTHSTONE_IC, false);
+                } else {
                     item.setChecked(true);
                     tabs.put(HEARTHSTONE, true);
                     SavePreferences(HEARTHSTONE_IC, true);
@@ -228,86 +210,86 @@ public class MainActivity extends AppCompatActivity {
                 updateMaterialViewPager();
                 return true;
             case R.id.lol_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(LOL, false);
-                    SavePreferences(LOL_IC,false);
-                }else {
+                    SavePreferences(LOL_IC, false);
+                } else {
                     item.setChecked(true);
                     tabs.put(LOL, true);
-                    SavePreferences(LOL_IC,true);
+                    SavePreferences(LOL_IC, true);
                 }
                 updateMaterialViewPager();
                 return true;
             case R.id.wot_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(WOT, false);
-                    SavePreferences(WOT_IC,false);
-                }else {
+                    SavePreferences(WOT_IC, false);
+                } else {
                     item.setChecked(true);
                     tabs.put(WOT, true);
-                    SavePreferences(WOT_IC,true);
+                    SavePreferences(WOT_IC, true);
                 }
                 updateMaterialViewPager();
                 return true;
             case R.id.hots_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(HOTS, false);
-                    SavePreferences(HOTS_IC,false);
-                }else {
+                    SavePreferences(HOTS_IC, false);
+                } else {
                     item.setChecked(true);
-                    tabs.put(HOTS,true);
-                    SavePreferences(HOTS_IC,true);
+                    tabs.put(HOTS, true);
+                    SavePreferences(HOTS_IC, true);
                 }
                 updateMaterialViewPager();
                 return true;
             case R.id.sc2_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(STARCRAFT, false);
-                    SavePreferences(STARCRAFT_IC,false);
-                }else {
+                    SavePreferences(STARCRAFT_IC, false);
+                } else {
                     item.setChecked(true);
-                    tabs.put(STARCRAFT,true);
-                    SavePreferences(STARCRAFT_IC,true);
+                    tabs.put(STARCRAFT, true);
+                    SavePreferences(STARCRAFT_IC, true);
                 }
                 updateMaterialViewPager();
                 return true;
             case R.id.overwatch_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(OVERWATCH, false);
-                    SavePreferences(OVERWATCH_IC,false);
-                }else {
+                    SavePreferences(OVERWATCH_IC, false);
+                } else {
                     item.setChecked(true);
                     tabs.put(OVERWATCH, true);
-                    SavePreferences(OVERWATCH_IC,true);
+                    SavePreferences(OVERWATCH_IC, true);
                 }
                 updateMaterialViewPager();
                 return true;
             case R.id.other_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(OTHER, false);
-                    SavePreferences(OTHER_IC,false);
-                }else {
+                    SavePreferences(OTHER_IC, false);
+                } else {
                     item.setChecked(true);
                     tabs.put(OTHER, true);
-                    SavePreferences(OTHER_IC,true);
+                    SavePreferences(OTHER_IC, true);
                 }
                 updateMaterialViewPager();
                 return true;
             case R.id.life_menu:
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(LIFE, false);
-                    SavePreferences(LIFE_IC,false);
-                }else {
+                    SavePreferences(LIFE_IC, false);
+                } else {
                     item.setChecked(true);
                     tabs.put(LIFE, true);
-                    SavePreferences(LIFE_IC,true);
+                    SavePreferences(LIFE_IC, true);
                 }
                 updateMaterialViewPager();
                 return true;
@@ -325,15 +307,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-    private void updateMaterialViewPager(){
+    private void updateMaterialViewPager() {
         final ArrayList<String[]> arrayList = new ArrayList<>();
 
-        for (Map.Entry<String[],Boolean> map : tabs.entrySet())
-        {
-            if (map.getValue())
-            {
+        for (Map.Entry<String[], Boolean> map : tabs.entrySet()) {
+            if (map.getValue()) {
                 arrayList.add(map.getKey());
             }
         }
@@ -341,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabCount = arrayList.size();
 
-        materialViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
+      /*  materialViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
             public HeaderDesign getHeaderDesign(int page) {
                 switch (page) {
@@ -392,13 +370,12 @@ public class MainActivity extends AppCompatActivity {
 
                 return null;
             }
-        });
+        });*/
         materialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
             @Override
             public Fragment getItem(int position) {
-                switch (position)
-                {
+                switch (position) {
                     case 0:
                         return RecyclerViewFragment.newInstance(arrayList.get(0)[0]);
                     case 1:
@@ -424,15 +401,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-
             }
 
             @Override
             public int getCount() {
                 return tabCount;
             }
-
-
 
 
             @Override
@@ -471,15 +445,14 @@ public class MainActivity extends AppCompatActivity {
         materialViewPager.getPagerTitleStrip().setViewPager(materialViewPager.getViewPager());
     }
 
-    private void SavePreferences(String key,Boolean value)
-    {
+    private void SavePreferences(String key, Boolean value) {
         sharedPreferences = getSharedPreferences(APP_PREF, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, value);
         editor.apply();
     }
 
-    private Drawable ReturnLogo(String key) {
+    /*private Drawable ReturnLogo(String key) {
         switch (key) {
             case DOTA_IC:
                 return getResources().getDrawable(R.drawable.dota2);
@@ -505,7 +478,7 @@ public class MainActivity extends AppCompatActivity {
                 return getResources().getDrawable(R.drawable.dota2);
         }
 
-    }
+    }*/
 
 
 }
