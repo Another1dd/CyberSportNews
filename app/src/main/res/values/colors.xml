@@ -9,6 +9,7 @@
     <color name="black">#000000</color>
     <color name="gainsboro">#696969</color>
     <color name="snow_white">#FFFAFA</color>
+    <color name="text_color">@android:color/white</color>
 
 
     <color name="accent_color">@color/red</color>
