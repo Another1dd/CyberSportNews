@@ -3,43 +3,39 @@ package com.another1dd.cybersportnews.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import com.another1dd.cybersportnews.R
+import com.another1dd.cybersportnews.adapters.MainRecyclerViewAdapter
+import com.another1dd.cybersportnews.extensions.inflate
 import com.another1dd.cybersportnews.model.ParseTitle
-import com.another1dd.cybersportnews.adapters.TestRecyclerViewAdapter
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter
-
-import java.util.LinkedHashMap
+import kotlinx.android.synthetic.main.fragment_recycler_view.*
+import java.util.*
 import java.util.concurrent.ExecutionException
 
 
 class RecyclerViewFragment : Fragment() {
-
     private var linkedHashMap = LinkedHashMap<Array<String>, String>()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(com.another1dd.cybersportnews.R.layout.fragment_recycler_view, container, false)
+        return container?.inflate(R.layout.fragment_recycler_view)
 
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mRecyclerView = view!!.findViewById<View>(com.another1dd.cybersportnews.R.id.recyclerView) as RecyclerView
 
 
         val layoutManager = LinearLayoutManager(activity)
-        mRecyclerView.layoutManager = layoutManager
-        mRecyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.setHasFixedSize(true)
 
-        val swipeRefreshLayout = view.findViewById<View>(com.another1dd.cybersportnews.R.id.swipe) as SwipeRefreshLayout
-        swipeRefreshLayout.setColorSchemeResources(com.another1dd.cybersportnews.R.color.red, com.another1dd.cybersportnews.R.color.red, com.another1dd.cybersportnews.R.color.red)
-        swipeRefreshLayout.setOnRefreshListener {
+        swipe.setColorSchemeResources(com.another1dd.cybersportnews.R.color.red, com.another1dd.cybersportnews.R.color.red, com.another1dd.cybersportnews.R.color.red)
+        swipe.setOnRefreshListener {
             val parseTitle = ParseTitle()
             parseTitle.execute(arguments.getString(BUNDLE_CONTENT))
 
@@ -53,9 +49,9 @@ class RecyclerViewFragment : Fragment() {
                 e.printStackTrace()
             }
 
-            val mAdapter = RecyclerViewMaterialAdapter(TestRecyclerViewAdapter(linkedHashMap))
-            mRecyclerView.adapter = mAdapter
-            swipeRefreshLayout.isRefreshing = false
+            val mAdapter = RecyclerViewMaterialAdapter(MainRecyclerViewAdapter(linkedHashMap))
+            recyclerView.adapter = mAdapter
+            swipe.isRefreshing = false
         }
 
         val parseTitle = ParseTitle()
@@ -72,17 +68,15 @@ class RecyclerViewFragment : Fragment() {
         }
 
 
-        val mAdapter = RecyclerViewMaterialAdapter(TestRecyclerViewAdapter(linkedHashMap))
-        mRecyclerView.adapter = mAdapter
+        val mAdapter = RecyclerViewMaterialAdapter(MainRecyclerViewAdapter(linkedHashMap))
+        recyclerView.adapter = mAdapter
 
 
-        MaterialViewPagerHelper.registerRecyclerView(activity, mRecyclerView)
+        MaterialViewPagerHelper.registerRecyclerView(activity, recyclerView)
     }
 
     companion object {
-
         private val BUNDLE_CONTENT = "bundle_content"
-
 
         fun newInstance(href: String): RecyclerViewFragment {
             val fragment = RecyclerViewFragment()

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Новости Киберспорта</string>
 
     <string name="button">Read</string>
@@ -14,4 +14,6 @@
     <string name="Overwatch">Overwatch</string>
     <string name="Other">Другое</string>
     <string name="Life">Life</string>
+
+    <string name="no_internet" tools:ignore="TypographyEllipsis">No internet connection...</string>
 </resources>

@@ -2,16 +2,10 @@ package com.another1dd.cybersportnews.model
 
 
 import android.os.AsyncTask
-
-import com.another1dd.cybersportnews.adapters.TestRecyclerViewAdapter
-
+import com.another1dd.cybersportnews.adapters.MainRecyclerViewAdapter
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.nodes.Element
-import org.jsoup.select.Elements
-
 import java.io.IOException
-import java.util.HashMap
+import java.util.*
 
 class ParseText : AsyncTask<String, Void, HashMap<String, String>>() {
 
@@ -30,22 +24,22 @@ class ParseText : AsyncTask<String, Void, HashMap<String, String>>() {
             val elementsPanel = document.select(".text.b-match-text-fix")
             val elementsBlogs = document.select(".community_text")
             for (elements in element) {
-                map.put(TestRecyclerViewAdapter.LEAD, elements.text())
+                map.put(MainRecyclerViewAdapter.LEAD, elements.text())
             }
 
             for (elements in elementMain) {
-                map.put(TestRecyclerViewAdapter.MAIN_NEWS_TEXT, elements.text())
+                map.put(MainRecyclerViewAdapter.MAIN_NEWS_TEXT, elements.text())
             }
 
             for (elements in elementsPanel) {
-                map.put(TestRecyclerViewAdapter.PANEL_BODY, elements.text())
+                map.put(MainRecyclerViewAdapter.PANEL_BODY, elements.text())
             }
 
             for (elements in elementsBlogs) {
-                map.put(TestRecyclerViewAdapter.BLOG_TEXT, elements.text())
+                map.put(MainRecyclerViewAdapter.BLOG_TEXT, elements.text())
             }
         } catch (e: IOException) {
-            map.put(TestRecyclerViewAdapter.PANEL_BODY, "Try: \n -Turn on or enable mobile data \n -Find WiFi Hotspot in your area \n\n " + "Попробуйте:\n -Включить передачу данных\n -Найти Wifi поблизости")
+            map.put(MainRecyclerViewAdapter.PANEL_BODY, "Try: \n -Turn on or enable mobile data \n -Find WiFi Hotspot in your area \n\n " + "Попробуйте:\n -Включить передачу данных\n -Найти Wifi поблизости")
             e.printStackTrace()
         }
 

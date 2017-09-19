@@ -4,61 +4,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.MainActivity">
     <item
-        android:id="@+id/dota_menu"
+        android:id="@+id/dotaMenu"
         android:title="@string/Dota"
         android:orderInCategory="10"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/csgo_menu"
+        android:id="@+id/csGoMenu"
         android:title="@string/CsGo"
         android:orderInCategory="11"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/hearthstone_menu"
+        android:id="@+id/hearthstoneMenu"
         android:title="@string/Hearthstone"
         android:orderInCategory="12"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/lol_menu"
+        android:id="@+id/lolMenu"
         android:title="@string/LoL"
         android:orderInCategory="13"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/wot_menu"
+        android:id="@+id/wotMenu"
         android:title="@string/WoT"
         android:orderInCategory="14"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/hots_menu"
+        android:id="@+id/hotsMenu"
         android:title="@string/HoTs"
         android:orderInCategory="15"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/sc2_menu"
+        android:id="@+id/sc2Menu"
         android:title="@string/SC2"
         android:orderInCategory="16"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/overwatch_menu"
+        android:id="@+id/overwatchMenu"
         android:title="@string/Overwatch"
         android:orderInCategory="17"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/other_menu"
+        android:id="@+id/otherMenu"
         android:title="@string/Other"
         android:orderInCategory="18"
         app:showAsAction="never"
         android:checkable="true" />
     <item
-        android:id="@+id/life_menu"
+        android:id="@+id/lifeMenu"
         android:title="@string/Life"
         android:orderInCategory="19"
         app:showAsAction="never"

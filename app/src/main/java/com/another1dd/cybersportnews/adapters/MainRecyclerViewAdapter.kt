@@ -13,27 +13,21 @@ import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-
 import com.another1dd.cybersportnews.model.ParseText
-
-import java.util.ArrayList
-import java.util.HashMap
-import java.util.LinkedHashMap
+import kotlinx.android.synthetic.main.list_item_card.view.*
+import java.util.*
 import java.util.concurrent.ExecutionException
 
-class TestRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, String>) : RecyclerView.Adapter<TestRecyclerViewAdapter.ViewHolder>() {
+class MainRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, String>) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
     open class ViewHolder(internal val cardView: CardView) : RecyclerView.ViewHolder(cardView)
     override fun getItemCount(): Int {
         return map.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestRecyclerViewAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainRecyclerViewAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(com.another1dd.cybersportnews.R.layout.list_item_card, parent, false) as CardView
-        return object : TestRecyclerViewAdapter.ViewHolder(view) {
-
+        return object : MainRecyclerViewAdapter.ViewHolder(view) {
         }
     }
 
@@ -44,12 +38,9 @@ class TestRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, Stri
 
         for ((key) in map) {
             list.add(key)
-
-
         }
 
         val cardView = holder.cardView
-        val textView = cardView.findViewById<View>(com.another1dd.cybersportnews.R.id.txt) as TextView
         val title = list[position][0]
         val time = list[position][1]
         val titleSpan = SpannableStringBuilder(title + " - " + time)
@@ -58,16 +49,13 @@ class TestRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, Stri
         titleSpan.setSpan(ForegroundColorSpan(Color.rgb(105, 105, 105)), title.length + 3,
                 title.length + time.length + 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
 
-        textView.text = titleSpan
+        holder.itemView.txt.text = titleSpan
 
+        holder.itemView.newsTxt.visibility = View.GONE
 
-        val textView1 = cardView.findViewById<View>(com.another1dd.cybersportnews.R.id.news_txt) as TextView
-        textView1.visibility = View.GONE
-        val button = cardView.findViewById<View>(com.another1dd.cybersportnews.R.id.button_http) as Button
+        holder.itemView.buttonHttp.visibility = View.GONE
 
-        button.visibility = View.GONE
-
-        button.setOnClickListener { v ->
+        holder.itemView.buttonHttp.setOnClickListener { v ->
             val browseIntent = Intent(Intent.ACTION_VIEW,
                     Uri.parse(map[list[holder.adapterPosition - 1]]))
             v.context.startActivity(browseIntent)
@@ -77,11 +65,9 @@ class TestRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, Stri
             val parseText = ParseText()
             parseText.execute(map[list[holder.adapterPosition - 1]])
 
-
-            if (textView1.visibility == View.GONE) {
+            if ( holder.itemView.newsTxt.visibility == View.GONE) {
                 if (textParsed[0] == "") {
                     try {
-
                         val map = parseText.get()
                         var lead: String? = map[LEAD]
                         val main = map[MAIN_NEWS_TEXT]
@@ -100,21 +86,18 @@ class TestRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, Stri
                         } else {
                             textParsed[0] = blogText.toString()
                         }
-
-
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     } catch (e: ExecutionException) {
                         e.printStackTrace()
                     }
-
                 }
-                textView1.text = textParsed[0]
-                textView1.visibility = View.VISIBLE
-                button.visibility = View.VISIBLE
+                holder.itemView.newsTxt.text = textParsed[0]
+                holder.itemView.newsTxt.visibility = View.VISIBLE
+                holder.itemView.buttonHttp.visibility = View.VISIBLE
             } else {
-                textView1.visibility = View.GONE
-                button.visibility = View.GONE
+                holder.itemView.newsTxt.visibility = View.GONE
+                holder.itemView.buttonHttp.visibility = View.GONE
             }
         }
 
@@ -122,7 +105,6 @@ class TestRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, Stri
     }
 
     companion object {
-
         val MAIN_NEWS_TEXT = "MNT"
         val LEAD = "lead"
         val PANEL_BODY = "panel"

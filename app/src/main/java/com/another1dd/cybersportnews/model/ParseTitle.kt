@@ -1,14 +1,9 @@
 package com.another1dd.cybersportnews.model
 
 import android.os.AsyncTask
-
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.nodes.Element
-import org.jsoup.select.Elements
-
 import java.io.IOException
-import java.util.LinkedHashMap
+import java.util.*
 
 
 class ParseTitle : AsyncTask<String, Void, LinkedHashMap<Array<String>, String>>() {

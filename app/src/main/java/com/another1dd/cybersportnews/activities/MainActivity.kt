@@ -5,21 +5,15 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import com.another1dd.cybersportnews.constants.CybersportNews
-
 import com.another1dd.cybersportnews.fragments.RecyclerViewFragment
-import com.github.florent37.materialviewpager.MaterialViewPager
-
-import java.util.ArrayList
-import java.util.LinkedHashMap
+import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var materialViewPager: MaterialViewPager
     private var tabs = LinkedHashMap<Array<String>, Boolean>()
     internal var tabCount = 0
     private lateinit var sharedPreferences: SharedPreferences
@@ -45,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         tabCount = tabs.size
 
-        materialViewPager = findViewById(com.another1dd.cybersportnews.R.id.materialViewPager)
 
         val toolbar = materialViewPager.toolbar
 
@@ -65,43 +58,34 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(com.another1dd.cybersportnews.R.menu.menu_main, menu)
-        val dota_menu = menu.findItem(com.another1dd.cybersportnews.R.id.dota_menu)
-        val csgo_menu = menu.findItem(com.another1dd.cybersportnews.R.id.csgo_menu)
-        val heathstone_menu = menu.findItem(com.another1dd.cybersportnews.R.id.hearthstone_menu)
-        val lol_menu = menu.findItem(com.another1dd.cybersportnews.R.id.lol_menu)
-        val wot_menu = menu.findItem(com.another1dd.cybersportnews.R.id.wot_menu)
-        val hots_menu = menu.findItem(com.another1dd.cybersportnews.R.id.hots_menu)
-        val sc2_menu = menu.findItem(com.another1dd.cybersportnews.R.id.sc2_menu)
-        val overwatch_menu = menu.findItem(com.another1dd.cybersportnews.R.id.overwatch_menu)
-        val other_menu = menu.findItem(com.another1dd.cybersportnews.R.id.other_menu)
-        val life_menu = menu.findItem(com.another1dd.cybersportnews.R.id.life_menu)
+        val dotaMenu = menu.findItem(com.another1dd.cybersportnews.R.id.dotaMenu)
+        val csgoMenu = menu.findItem(com.another1dd.cybersportnews.R.id.csGoMenu)
+        val heathstoneMenu = menu.findItem(com.another1dd.cybersportnews.R.id.hearthstoneMenu)
+        val lolMenu = menu.findItem(com.another1dd.cybersportnews.R.id.lolMenu)
+        val wotMenu = menu.findItem(com.another1dd.cybersportnews.R.id.wotMenu)
+        val hotsMenu = menu.findItem(com.another1dd.cybersportnews.R.id.hotsMenu)
+        val sc2Menu = menu.findItem(com.another1dd.cybersportnews.R.id.sc2Menu)
+        val overwatchMenu = menu.findItem(com.another1dd.cybersportnews.R.id.overwatchMenu)
+        val otherMenu = menu.findItem(com.another1dd.cybersportnews.R.id.otherMenu)
+        val lifeMenu = menu.findItem(com.another1dd.cybersportnews.R.id.lifeMenu)
 
-        dota_menu.isChecked = tabs[CybersportNews.DOTA]!!
-
-        csgo_menu.isChecked = tabs[CybersportNews.CSGO]!!
-
-        heathstone_menu.isChecked = tabs[CybersportNews.HEARTHSTONE]!!
-
-        lol_menu.isChecked = tabs[CybersportNews.LOL]!!
-
-        wot_menu.isChecked = tabs[CybersportNews.WOT]!!
-
-        hots_menu.isChecked = tabs[CybersportNews.HOTS]!!
-
-        sc2_menu.isChecked = tabs[CybersportNews.STARCRAFT]!!
-
-        overwatch_menu.isChecked = tabs[CybersportNews.OVERWATCH]!!
-
-        other_menu.isChecked = tabs[CybersportNews.OTHER]!!
-
-        life_menu.isChecked = tabs[CybersportNews.LIFE]!!
+        dotaMenu.isChecked = tabs[CybersportNews.DOTA]!!
+        csgoMenu.isChecked = tabs[CybersportNews.CSGO]!!
+        heathstoneMenu.isChecked = tabs[CybersportNews.HEARTHSTONE]!!
+        lolMenu.isChecked = tabs[CybersportNews.LOL]!!
+        wotMenu.isChecked = tabs[CybersportNews.WOT]!!
+        hotsMenu.isChecked = tabs[CybersportNews.HOTS]!!
+        sc2Menu.isChecked = tabs[CybersportNews.STARCRAFT]!!
+        overwatchMenu.isChecked = tabs[CybersportNews.OVERWATCH]!!
+        otherMenu.isChecked = tabs[CybersportNews.OTHER]!!
+        lifeMenu.isChecked = tabs[CybersportNews.LIFE]!!
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            com.another1dd.cybersportnews.R.id.dota_menu -> {
+            com.another1dd.cybersportnews.R.id.dotaMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.DOTA, false)
@@ -114,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.csgo_menu -> {
+            com.another1dd.cybersportnews.R.id.csGoMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.CSGO, false)
@@ -127,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.hearthstone_menu -> {
+            com.another1dd.cybersportnews.R.id.hearthstoneMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.HEARTHSTONE, false)
@@ -140,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.lol_menu -> {
+            com.another1dd.cybersportnews.R.id.lolMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.LOL, false)
@@ -153,7 +137,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.wot_menu -> {
+            com.another1dd.cybersportnews.R.id.wotMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.WOT, false)
@@ -166,7 +150,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.hots_menu -> {
+            com.another1dd.cybersportnews.R.id.hotsMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.HOTS, false)
@@ -179,7 +163,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.sc2_menu -> {
+            com.another1dd.cybersportnews.R.id.sc2Menu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.STARCRAFT, false)
@@ -192,7 +176,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.overwatch_menu -> {
+            com.another1dd.cybersportnews.R.id.overwatchMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.OVERWATCH, false)
@@ -205,7 +189,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.other_menu -> {
+            com.another1dd.cybersportnews.R.id.otherMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.OTHER, false)
@@ -218,7 +202,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.life_menu -> {
+            com.another1dd.cybersportnews.R.id.lifeMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.LIFE, false)
