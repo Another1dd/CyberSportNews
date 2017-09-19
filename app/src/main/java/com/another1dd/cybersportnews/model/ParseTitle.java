@@ -1,4 +1,4 @@
-package com.another1dd.cybersportnews_materialviewpager;
+package com.another1dd.cybersportnews.model;
 
 import android.os.AsyncTask;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 
 
-class ParseTitle extends AsyncTask<String, Void, LinkedHashMap<String[], String>> {
+public class ParseTitle extends AsyncTask<String, Void, LinkedHashMap<String[], String>> {
 
     @Override
     protected LinkedHashMap<String[], String> doInBackground(String... params) {

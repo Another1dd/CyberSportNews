@@ -1,4 +1,4 @@
-package com.another1dd.cybersportnews_materialviewpager;
+package com.another1dd.cybersportnews.adapters;
 
 
 import android.content.Intent;
@@ -16,18 +16,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.another1dd.cybersportnews.model.ParseText;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapter.ViewHolder> {
+public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapter.ViewHolder> {
 
-    static final String MAIN_NEWS_TEXT = "MNT";
-    static final String LEAD = "lead";
-    static final String PANEL_BODY = "panel";
-    static final String BLOG_TEXT = "blog";
+    public static final String MAIN_NEWS_TEXT = "MNT";
+    public static final String LEAD = "lead";
+    public static final String PANEL_BODY = "panel";
+    public static final String BLOG_TEXT = "blog";
 
     private LinkedHashMap<String[], String> map;
 
@@ -42,7 +44,7 @@ class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapt
     }
 
 
-    TestRecyclerViewAdapter(LinkedHashMap<String[], String> map) {
+    public TestRecyclerViewAdapter(LinkedHashMap<String[], String> map) {
         this.map = map;
     }
 
@@ -54,7 +56,7 @@ class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapt
     @Override
     public TestRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView view = (CardView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_card, parent, false);
+                .inflate(com.another1dd.cybersportnews.R.layout.list_item_card, parent, false);
         return new TestRecyclerViewAdapter.ViewHolder(view) {
         };
     }
@@ -71,7 +73,7 @@ class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapt
         }
 
         final CardView cardView = holder.cardView;
-        final TextView textView = (TextView) cardView.findViewById(R.id.txt);
+        final TextView textView = (TextView) cardView.findViewById(com.another1dd.cybersportnews.R.id.txt);
         String title = list.get(position)[0];
         String time = list.get(position)[1];
         SpannableStringBuilder titleSpan = new SpannableStringBuilder(title + " - " + time);
@@ -83,9 +85,9 @@ class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapt
         textView.setText(titleSpan);
 
 
-        final TextView textView1 = (TextView) cardView.findViewById(R.id.news_txt);
+        final TextView textView1 = (TextView) cardView.findViewById(com.another1dd.cybersportnews.R.id.news_txt);
         textView1.setVisibility(View.GONE);
-        final Button button = (Button) cardView.findViewById(R.id.button_http);
+        final Button button = (Button) cardView.findViewById(com.another1dd.cybersportnews.R.id.button_http);
 
         button.setVisibility(View.GONE);
 

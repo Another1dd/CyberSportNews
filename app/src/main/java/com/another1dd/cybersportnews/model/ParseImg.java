@@ -1,4 +1,4 @@
-package com.another1dd.cybersportnews_materialviewpager;
+package com.another1dd.cybersportnews.model;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,8 +39,7 @@ public class ParseImg extends AsyncTask<String, Void, Bitmap> {
             e.printStackTrace();
         }
 
-        Bitmap imageOne = getImageBitmap(imageUrl);
-        return imageOne;
+        return getImageBitmap(imageUrl);
     }
 
     private Bitmap getImageBitmap(String url) {

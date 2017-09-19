@@ -1,4 +1,4 @@
-package com.another1dd.cybersportnews_materialviewpager;
+package com.another1dd.cybersportnews;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

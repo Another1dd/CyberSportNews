@@ -1,7 +1,9 @@
-package com.another1dd.cybersportnews_materialviewpager;
+package com.another1dd.cybersportnews.model;
 
 
 import android.os.AsyncTask;
+
+import com.another1dd.cybersportnews.adapters.TestRecyclerViewAdapter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

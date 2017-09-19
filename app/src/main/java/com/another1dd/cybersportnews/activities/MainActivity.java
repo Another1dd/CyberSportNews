@@ -1,4 +1,4 @@
-package com.another1dd.cybersportnews_materialviewpager;
+package com.another1dd.cybersportnews.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.another1dd.cybersportnews.fragments.RecyclerViewFragment;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(com.another1dd.cybersportnews.R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences(APP_PREF, MODE_PRIVATE);
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabCount = tabs.size();
 
-        materialViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
+        materialViewPager = findViewById(com.another1dd.cybersportnews.R.id.materialViewPager);
 
         Toolbar toolbar = materialViewPager.getToolbar();
 
@@ -89,17 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem dota_menu = menu.findItem(R.id.dota_menu);
-        MenuItem csgo_menu = menu.findItem(R.id.csgo_menu);
-        MenuItem heathstone_menu = menu.findItem(R.id.hearthstone_menu);
-        MenuItem lol_menu = menu.findItem(R.id.lol_menu);
-        MenuItem wot_menu = menu.findItem(R.id.wot_menu);
-        MenuItem hots_menu = menu.findItem(R.id.hots_menu);
-        MenuItem sc2_menu = menu.findItem(R.id.sc2_menu);
-        MenuItem overwatch_menu = menu.findItem(R.id.overwatch_menu);
-        MenuItem other_menu = menu.findItem(R.id.other_menu);
-        MenuItem life_menu = menu.findItem(R.id.life_menu);
+        getMenuInflater().inflate(com.another1dd.cybersportnews.R.menu.menu_main, menu);
+        MenuItem dota_menu = menu.findItem(com.another1dd.cybersportnews.R.id.dota_menu);
+        MenuItem csgo_menu = menu.findItem(com.another1dd.cybersportnews.R.id.csgo_menu);
+        MenuItem heathstone_menu = menu.findItem(com.another1dd.cybersportnews.R.id.hearthstone_menu);
+        MenuItem lol_menu = menu.findItem(com.another1dd.cybersportnews.R.id.lol_menu);
+        MenuItem wot_menu = menu.findItem(com.another1dd.cybersportnews.R.id.wot_menu);
+        MenuItem hots_menu = menu.findItem(com.another1dd.cybersportnews.R.id.hots_menu);
+        MenuItem sc2_menu = menu.findItem(com.another1dd.cybersportnews.R.id.sc2_menu);
+        MenuItem overwatch_menu = menu.findItem(com.another1dd.cybersportnews.R.id.overwatch_menu);
+        MenuItem other_menu = menu.findItem(com.another1dd.cybersportnews.R.id.other_menu);
+        MenuItem life_menu = menu.findItem(com.another1dd.cybersportnews.R.id.life_menu);
 
         if (tabs.get(DOTA)) {
             dota_menu.setChecked(true);
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.dota_menu:
+            case com.another1dd.cybersportnews.R.id.dota_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(DOTA, false);
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.csgo_menu:
+            case com.another1dd.cybersportnews.R.id.csgo_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(CSGO, false);
@@ -191,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.hearthstone_menu:
+            case com.another1dd.cybersportnews.R.id.hearthstone_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(HEARTHSTONE, false);
@@ -203,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.lol_menu:
+            case com.another1dd.cybersportnews.R.id.lol_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(LOL, false);
@@ -215,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.wot_menu:
+            case com.another1dd.cybersportnews.R.id.wot_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(WOT, false);
@@ -227,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.hots_menu:
+            case com.another1dd.cybersportnews.R.id.hots_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(HOTS, false);
@@ -239,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.sc2_menu:
+            case com.another1dd.cybersportnews.R.id.sc2_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(STARCRAFT, false);
@@ -251,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.overwatch_menu:
+            case com.another1dd.cybersportnews.R.id.overwatch_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(OVERWATCH, false);
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.other_menu:
+            case com.another1dd.cybersportnews.R.id.other_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(OTHER, false);
@@ -275,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 updateMaterialViewPager();
                 return true;
-            case R.id.life_menu:
+            case com.another1dd.cybersportnews.R.id.life_menu:
                 if (item.isChecked()) {
                     item.setChecked(false);
                     tabs.put(LIFE, false);
