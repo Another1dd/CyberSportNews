@@ -20,6 +20,7 @@ import java.util.concurrent.ExecutionException
 
 class MainRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, String>) : RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
     open class ViewHolder(internal val cardView: CardView) : RecyclerView.ViewHolder(cardView)
+
     override fun getItemCount(): Int {
         return map.size
     }
@@ -27,8 +28,7 @@ class MainRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, Stri
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainRecyclerViewAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(com.another1dd.cybersportnews.R.layout.list_item_card, parent, false) as CardView
-        return object : MainRecyclerViewAdapter.ViewHolder(view) {
-        }
+        return ViewHolder(view)
     }
 
 
@@ -65,7 +65,7 @@ class MainRecyclerViewAdapter(private val map: LinkedHashMap<Array<String>, Stri
             val parseText = ParseText()
             parseText.execute(map[list[holder.adapterPosition - 1]])
 
-            if ( holder.itemView.newsTxt.visibility == View.GONE) {
+            if (holder.itemView.newsTxt.visibility == View.GONE) {
                 if (textParsed[0] == "") {
                     try {
                         val map = parseText.get()
