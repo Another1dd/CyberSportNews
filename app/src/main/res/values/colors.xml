@@ -12,7 +12,6 @@
     <color name="text_color">@android:color/white</color>
 
 
-    <color name="accent_color">@color/red</color>
     <color name="colorPrimary">@color/black</color>
     <color name="colorPrimaryDark">@color/black</color>
     <color name="statusBarColor">@color/black</color>

@@ -3,13 +3,9 @@ package com.another1dd.cybersportnews.activities
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
+import com.another1dd.cybersportnews.R
 import com.another1dd.cybersportnews.constants.CybersportNews
-import com.another1dd.cybersportnews.fragments.RecyclerViewFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -21,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.another1dd.cybersportnews.R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
         sharedPreferences = getSharedPreferences(CybersportNews.APP_PREF, Context.MODE_PRIVATE)
 
@@ -40,23 +36,20 @@ class MainActivity : AppCompatActivity() {
         tabCount = tabs.size
 
 
-        val toolbar = materialViewPager.toolbar
+        setSupportActionBar(mainToolbar)
 
-        if (toolbar != null) {
-            setSupportActionBar(toolbar)
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(false)
+        actionBar?.setDisplayShowHomeEnabled(false)
+        actionBar?.setDisplayShowTitleEnabled(true)
+        actionBar?.setDisplayUseLogoEnabled(false)
+        actionBar?.setHomeButtonEnabled(false)
 
-            val actionBar = supportActionBar
-            actionBar?.setDisplayHomeAsUpEnabled(false)
-            actionBar?.setDisplayShowHomeEnabled(false)
-            actionBar?.setDisplayShowTitleEnabled(true)
-            actionBar?.setDisplayUseLogoEnabled(false)
-            actionBar?.setHomeButtonEnabled(false)
-        }
 
-        updateMaterialViewPager()
+//        updateMaterialViewPager()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(com.another1dd.cybersportnews.R.menu.menu_main, menu)
         val dotaMenu = menu.findItem(com.another1dd.cybersportnews.R.id.dotaMenu)
         val csgoMenu = menu.findItem(com.another1dd.cybersportnews.R.id.csGoMenu)
@@ -85,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            com.another1dd.cybersportnews.R.id.dotaMenu -> {
+            R.id.dotaMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.DOTA, false)
@@ -98,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.csGoMenu -> {
+            R.id.csGoMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.CSGO, false)
@@ -111,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.hearthstoneMenu -> {
+            R.id.hearthstoneMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.HEARTHSTONE, false)
@@ -124,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.lolMenu -> {
+            R.id.lolMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.LOL, false)
@@ -137,7 +130,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.wotMenu -> {
+            R.id.wotMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.WOT, false)
@@ -150,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.hotsMenu -> {
+            R.id.hotsMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.HOTS, false)
@@ -163,7 +156,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.sc2Menu -> {
+            R.id.sc2Menu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.STARCRAFT, false)
@@ -176,7 +169,7 @@ class MainActivity : AppCompatActivity() {
                 updateMaterialViewPager()
                 return true
             }
-            com.another1dd.cybersportnews.R.id.overwatchMenu -> {
+            R.id.overwatchMenu -> {
                 if (item.isChecked) {
                     item.isChecked = false
                     tabs.put(CybersportNews.OVERWATCH, false)
@@ -278,7 +271,7 @@ class MainActivity : AppCompatActivity() {
         materialViewPager.viewPager.offscreenPageLimit = tabCount
 
         materialViewPager.pagerTitleStrip.setViewPager(materialViewPager.viewPager)
-    }
+    }*/
 
     private fun SavePreferences(key: String, value: Boolean?) {
         sharedPreferences = getSharedPreferences(CybersportNews.APP_PREF, Context.MODE_PRIVATE)
